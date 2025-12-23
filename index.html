@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The Movie Database (TMDB) is a popular, user editable database for movies and TV shows."
+    />
+    <title>Popular Movies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/aside.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  </head>
+
+  <body class="app">
+    <!-- Header (Placeholder) -->
+    <header class="header">
+      <div class="header__container">
+        <div class="header__left">
+          <a href="#" class="header__menu-toggle" aria-label="Open menu">
+            <i class="fa-solid fa-bars"></i>
+          </a>
+          <!-- Logo -->
+          <a href="#" class="header__logo-link">
+            <img
+              src="assets/header-logo.svg"
+              alt="TMDB Logo"
+              class="header__logo-img"
+            />
+          </a>
+
+          <!-- Navigation -->
+          <nav class="header__nav" aria-label="Primary Navigation">
+            <ul class="header__nav-list">
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">Movies</a>
+              </li>
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">TV Shows</a>
+              </li>
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">People</a>
+              </li>
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">More</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Right side -->
+        <div class="header__actions">
+          <!-- Plus icon -->
+          <a
+            href="#"
+            class="header__action header__action--add"
+            aria-label="Add"
+          >
+            <img src="/assets/add.svg" alt="" class="header__icon" />
+          </a>
+
+          <!-- Language selector -->
+          <div class="header__action header__action--lang">EN</div>
+
+          <!-- Login / Join TMDB -->
+          <a href="#" class="header__action header__action--login">Login</a>
+          <a href="#" class="header__action header__action--join">Join TMDB</a>
+
+          <a
+            href="#"
+            class="header__action header__action--profile"
+            id="mobile-user-icon"
+            aria-label="Profile"
+          >
+            <i class="fa-solid fa-user"></i>
+          </a>
+
+          <!-- Search icon -->
+          <button
+            class="header__action header__action--search"
+            aria-label="Search"
+          >
+            <img src="assets/search.svg" alt="" class="header__icon--search" />
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu-panel" aria-hidden="true">
+      <nav class="mobile-menu__nav" aria-label="Mobile Navigation">
+        <!-- Primary links -->
+        <ul class="mobile-menu__list mobile-menu__list--primary">
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">Movies</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">TV Shows</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">People</a>
+          </li>
+        </ul>
+
+        <!-- Secondary links -->
+        <ul class="mobile-menu__list mobile-menu__list--secondary">
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">Contribution Bible</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">Discussions</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">Leaderboard</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">API</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">Support</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">About</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="#" class="mobile-menu__link">Login</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <main class="main">
+      <div class="main_wrapper">
+        <!-- Page Title -->
+        <h2 class="main__title">Popular Movies</h2>
+        <div class="main_wrapper-center">
+          <div class="main__sidebar-wrapper">
+            <aside class="main__sidebar">
+              <!-- Sort Section -->
+              <section
+                class="sidebar__panel sidebar__panel--collapsible"
+                data-section="sort"
+              >
+                <div
+                  class="sidebar__panel-header"
+                  role="button"
+                  tabindex="0"
+                  aria-expanded="false"
+                >
+                  <h3 class="sidebar__panel-title">Sort</h3>
+                  <i class="fa-solid fa-chevron-down sidebar__panel-icon"></i>
+                </div>
+
+                <div class="sidebar__panel-content">
+                  <div class="sidebar__control">
+                    <label for="sort-options" class="sidebar__label">
+                      Sort Results By
+                    </label>
+                    <select id="sort-options" class="sidebar__select">
+                      <option value="popularity.desc">
+                        Popularity Descending
+                      </option>
+                      <option value="popularity.asc">
+                        Popularity Ascending
+                      </option>
+                      <option value="vote_average.desc">
+                        Rating Descending
+                      </option>
+                      <option value="vote_average.asc">Rating Ascending</option>
+                      <option value="release_date.desc">
+                        Release Date Descending
+                      </option>
+                      <option value="release_date.asc">
+                        Release Date Ascending
+                      </option>
+                      <option value="title.asc">Title (A–Z)</option>
+                      <option value="title.desc">Title (Z–A)</option>
+                    </select>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="sidebar__panel sidebar__panel--filters sidebar__panel--collapsible sidebar__panel--open"
+                data-section="filters"
+              >
+                <!-- Panel Header -->
+                <div
+                  class="sidebar__panel-header"
+                  role="button"
+                  tabindex="0"
+                  aria-expanded="true"
+                >
+                  <h3 class="sidebar__panel-title">Filters</h3>
+                  <i class="fa-solid fa-chevron-down sidebar__panel-icon"></i>
+                </div>
+                <div
+                  class="sidebar__panel-content sidebar__panel-content--filters"
+                >
+                  <!-- Filter Group: Show Me -->
+                  <div class="sidebar__filter-group">
+                    <div class="sidebar__filter-header">
+                      <h4 class="sidebar__filter-title">Show Me</h4>
+                      <i
+                        class="fa-solid fa-circle-question sidebar__filter-help"
+                        aria-hidden="true"
+                      ></i>
+                    </div>
+
+                    <div class="sidebar__radio-group">
+                      <label class="sidebar__radio">
+                        <input
+                          type="radio"
+                          name="show-me"
+                          value="everything"
+                          checked
+                        />
+                        <span class="sidebar__radio-label">Everything</span>
+                      </label>
+
+                      <label class="sidebar__radio">
+                        <input type="radio" name="show-me" value="unseen" />
+                        <span class="sidebar__radio-label">
+                          Movies I Haven't Seen
+                        </span>
+                      </label>
+
+                      <label class="sidebar__radio">
+                        <input type="radio" name="show-me" value="seen" />
+                        <span class="sidebar__radio-label">
+                          Movies I Have Seen
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Release Dates Filter -->
+                  <div class="sidebar__filter-group">
+                    <!-- Filter Header -->
+                    <div class="sidebar__filter-header">
+                      <h4 class="sidebar__filter-title">Release Dates</h4>
+                    </div>
+
+                    <!-- Search All Releases -->
+                    <div class="sidebar__checkbox-control">
+                      <input
+                        type="checkbox"
+                        id="search-all-releases"
+                        class="sidebar__checkbox"
+                        checked
+                      />
+                      <label
+                        for="search-all-releases"
+                        class="sidebar__checkbox-label"
+                      >
+                        Search all releases?
+                      </label>
+                    </div>
+
+                    <!-- Advanced Options (hidden by default) -->
+                    <div class="sidebar__filter-advanced" hidden>
+                      <!-- Search All Countries -->
+                      <div class="sidebar__checkbox-control">
+                        <input
+                          type="checkbox"
+                          id="search-all-countries"
+                          class="sidebar__checkbox"
+                          checked
+                        />
+                        <label
+                          for="search-all-countries"
+                          class="sidebar__checkbox-label"
+                        >
+                          Search all countries?
+                        </label>
+                      </div>
+
+                      <!-- Country Selector -->
+                      <!-- Country Selector -->
+                      <div
+                        id="country-select-wrapper"
+                        class="sidebar__select-wrapper"
+                      >
+                        <select id="country-select" class="sidebar__select">
+                          <option value="">Loading countries...</option>
+                        </select>
+                      </div>
+
+                      <!-- Release Types -->
+                      <div class="sidebar__release-types">
+                        <div class="sidebar__checkbox-control">
+                          <input
+                            type="checkbox"
+                            id="release-theatrical-limited"
+                            class="sidebar__checkbox release-type-checkbox"
+                            value="2"
+                            checked
+                          />
+                          <label
+                            for="release-theatrical-limited"
+                            class="sidebar__checkbox-label"
+                          >
+                            Theatrical (limited)
+                          </label>
+                        </div>
+
+                        <div class="sidebar__checkbox-control">
+                          <input
+                            type="checkbox"
+                            id="release-theatrical"
+                            class="sidebar__checkbox release-type-checkbox"
+                            value="3"
+                            checked
+                          />
+                          <label
+                            for="release-theatrical"
+                            class="sidebar__checkbox-label"
+                          >
+                            Theatrical
+                          </label>
+                        </div>
+
+                        <div class="sidebar__checkbox-control">
+                          <input
+                            type="checkbox"
+                            id="release-premiere"
+                            class="sidebar__checkbox release-type-checkbox"
+                            value="1"
+                            checked
+                          />
+                          <label
+                            for="release-premiere"
+                            class="sidebar__checkbox-label"
+                          >
+                            Premiere
+                          </label>
+                        </div>
+
+                        <div class="sidebar__checkbox-control">
+                          <input
+                            type="checkbox"
+                            id="release-digital"
+                            class="sidebar__checkbox release-type-checkbox"
+                            value="4"
+                            checked
+                          />
+                          <label
+                            for="release-digital"
+                            class="sidebar__checkbox-label"
+                          >
+                            Digital
+                          </label>
+                        </div>
+
+                        <div class="sidebar__checkbox-control">
+                          <input
+                            type="checkbox"
+                            id="release-physical"
+                            class="sidebar__checkbox release-type-checkbox"
+                            value="5"
+                            checked
+                          />
+                          <label
+                            for="release-physical"
+                            class="sidebar__checkbox-label"
+                          >
+                            Physical
+                          </label>
+                        </div>
+
+                        <div class="sidebar__checkbox-control">
+                          <input
+                            type="checkbox"
+                            id="release-tv"
+                            class="sidebar__checkbox release-type-checkbox"
+                            value="6"
+                            checked
+                          />
+                          <label
+                            for="release-tv"
+                            class="sidebar__checkbox-label"
+                          >
+                            TV
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Date Range -->
+
+                    <div class="sidebar__date-input-wrapper">
+                      <label for="date-from" class="sidebar__date-label"
+                        >from</label
+                      >
+                      <div class="date-input-container">
+                        <input
+                          type="text"
+                          id="date-from"
+                          class="sidebar__date-input"
+                        />
+                        <button
+                          type="button"
+                          class="date-picker-btn"
+                          data-target="date-from"
+                        >
+                          <img src="assets/date.svg" alt="Calendar" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="sidebar__date-input-wrapper">
+                      <label for="date-to" class="sidebar__date-label"
+                        >to</label
+                      >
+                      <div class="date-input-container">
+                        <input
+                          type="text"
+                          id="date-to"
+                          class="sidebar__date-input"
+                        />
+                        <button
+                          type="button"
+                          class="date-picker-btn"
+                          data-target="date-to"
+                        >
+                          <img src="assets/date.svg" alt="Calendar" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Genres Filter -->
+                  <div class="sidebar__filter-group">
+                    <!-- Filter Header -->
+                    <div class="sidebar__filter-header">
+                      <h4 class="sidebar__filter-title">Genres</h4>
+                    </div>
+
+                    <!-- Genre Checkboxes / Tags -->
+                    <div id="genre-checkboxes" class="sidebar__genre-list">
+                      <p class="sidebar__loading-text">Loading genres...</p>
+                    </div>
+                  </div>
+
+                  <!-- Certification Filter -->
+                  <div class="sidebar__filter-group">
+                    <!-- Filter Header -->
+                    <div
+                      class="sidebar__filter-header sidebar__filter-header--ct"
+                    >
+                      <h4 class="sidebar__filter-title">Certification</h4>
+                    </div>
+                  </div>
+
+                  <!-- Language Filter -->
+                  <div class="sidebar__filter-group">
+                    <!-- Filter Header -->
+                    <div class="sidebar__filter-header">
+                      <h4 class="sidebar__filter-title">
+                        Language
+                        <i
+                          class="fa-solid fa-circle-question sidebar__filter-help"
+                          aria-hidden="true"
+                        ></i>
+                      </h4>
+                    </div>
+
+                    <!-- Custom Select Wrapper -->
+                    <div
+                      class="sidebar__custom-select"
+                      id="language-select-wrapper"
+                    >
+                      <!-- Select Button -->
+                      <button
+                        type="button"
+                        class="sidebar__custom-select-button"
+                        id="language-select-button"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                      >
+                        <span
+                          class="sidebar__custom-select-value"
+                          id="language-select-value"
+                        >
+                          None Selected
+                        </span>
+                        <i
+                          class="fa-solid fa-chevron-down sidebar__custom-select-arrow"
+                        ></i>
+                      </button>
+
+                      <!-- Options Panel (hidden by default) -->
+                      <div
+                        class="sidebar__custom-select-panel"
+                        id="language-select-panel"
+                        role="listbox"
+                        hidden
+                      >
+                        <!-- Search Input -->
+                        <div class="sidebar__custom-select-search">
+                          <i
+                            class="fa-solid fa-magnifying-glass sidebar__custom-search-icon"
+                          ></i>
+                          <input
+                            type="text"
+                            id="language-search-input"
+                            class="sidebar__custom-search-input"
+                            placeholder="Filter"
+                          />
+                        </div>
+
+                        <!-- Options List -->
+                        <ul
+                          class="sidebar__custom-select-options"
+                          id="language-options-list"
+                        >
+                          <li
+                            class="sidebar__custom-option sidebar__custom-option--selected"
+                            role="option"
+                            data-value="none"
+                          >
+                            None Selected
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- User Score Filter -->
+
+                  <div class="sidebar__filter-group">
+                    <h4 class="sidebar__filter-title-slider">User Score</h4>
+
+                    <div class="sidebar__slider-wrapper">
+                      <div class="sidebar__slider-track" id="score-track"></div>
+                      <input
+                        type="range"
+                        id="user-score-min"
+                        class="sidebar__slider-input"
+                        min="0"
+                        max="10"
+                        step="0.5"
+                        value="0"
+                      />
+                      <input
+                        type="range"
+                        id="user-score-max"
+                        class="sidebar__slider-input"
+                        min="0"
+                        max="10"
+                        step="0.5"
+                        value="10"
+                      />
+                    </div>
+
+                    <div class="sidebar__slider-labels">
+                      <span id="score-min-label">0</span>
+                      <span>5</span>
+                      <span id="score-max-label">10</span>
+                    </div>
+                  </div>
+
+                  <div class="sidebar__filter-group">
+                    <h4 class="sidebar__filter-title-slider">
+                      Minimum User Votes
+                    </h4>
+                    <div class="sidebar__slider-wrapper">
+                      <div class="sidebar__slider-track" id="votes-track"></div>
+                      <input
+                        type="range"
+                        id="min-votes-slider"
+                        class="sidebar__slider-input"
+                        min="0"
+                        max="500"
+                        step="10"
+                        value="0"
+                      />
+                    </div>
+
+                    <div class="sidebar__slider-labels">
+                      <span id="votes-min-label">0</span>
+                      <span>100</span>
+                      <span>200</span>
+                      <span>300</span>
+                      <span>400</span>
+                      <span>500</span>
+                    </div>
+                  </div>
+
+                  <div class="sidebar__filter-group">
+                    <h4 class="sidebar__filter-title-slider">Runtime</h4>
+
+                    <div class="sidebar__slider-wrapper">
+                      <div
+                        class="sidebar__slider-track"
+                        id="runtime-track"
+                      ></div>
+                      <input
+                        type="range"
+                        id="runtime-min"
+                        class="sidebar__slider-input"
+                        min="0"
+                        max="360"
+                        step="15"
+                        value="0"
+                      />
+                      <input
+                        type="range"
+                        id="runtime-max"
+                        class="sidebar__slider-input"
+                        min="0"
+                        max="360"
+                        step="15"
+                        value="360"
+                      />
+                    </div>
+
+                    <div class="sidebar__slider-labels">
+                      <span id="runtime-min-label">0</span>
+                      <span>120</span>
+                      <span>240</span>
+                      <span id="runtime-max-label">360</span>
+                    </div>
+                  </div>
+
+                  <!-- Keywords Filter -->
+                  <div class="sidebar__filter-group">
+                    <div class="sidebar__filter-header">
+                      <h4 class="sidebar__filter-title">Keywords</h4>
+                    </div>
+
+                    <div
+                      class="sidebar__keywords-wrapper"
+                      id="keywords-wrapper"
+                    >
+                      <!-- Tags List -->
+                      <ul
+                        class="sidebar__keyword-tags-list"
+                        id="keyword-tags-list"
+                      ></ul>
+
+                      <!-- Input Field -->
+                      <input
+                        type="text"
+                        id="keyword-input"
+                        class="sidebar__keywords-input"
+                        placeholder="Filter by keywords..."
+                      />
+
+                      <!-- Clear All Icon -->
+                      <i
+                        class="fa-solid fa-times sidebar__clear-keywords"
+                        id="clear-all-keywords-btn"
+                        hidden
+                      ></i>
+
+                      <!-- Suggestions Panel -->
+                      <div
+                        class="sidebar__keyword-suggestions-panel"
+                        id="keyword-suggestions-panel"
+                        hidden
+                      >
+                        <ul id="keyword-suggestions-list"></ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- Apply Filters Button -->
+              <div class="sidebar__filter-actions-wrapper">
+                <div class="sidebar__filter-actions">
+                  <!-- Sticky button -->
+                  <button
+                    id="search-button-sticky"
+                    class="search-btn sticky-btn"
+                  >
+                    Search
+                  </button>
+
+                  <!-- Normal button -->
+                  <button id="search-button-normal" class="search-btn">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <!-- Movies Grid Section -->
+          <section class="movie-list-area">
+            <!-- Movies Grid -->
+            <div id="movies-grid" class="movie-list-area__grid"></div>
+
+            <!-- Loading Indicator -->
+            <p id="loading-indicator" class="movie-list-area__status" hidden>
+              Loading more movies...
+            </p>
+
+            <!-- Error Message -->
+            <p
+              id="error-message"
+              class="movie-list-area__status movie-list-area__status--error"
+              hidden
+            >
+              Failed to load movies. Please try again.
+            </p>
+
+            <!-- Load More Button -->
+            <button id="load-more-btn" class="movie-list-area__load-more">
+              Load More
+            </button>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__container">
+        <!-- Join Section -->
+        <div class="footer__join">
+          <img
+            src="assets/footer-logo.svg"
+            alt="The Movie Database (TMDB)"
+            class="footer__logo"
+            width="130"
+            height="94"
+          />
+          <a href="/signup" class="footer__join-btn">JOIN THE COMMUNITY</a>
+        </div>
+
+        <!-- Links Sections -->
+        <div class="footer__links">
+          <!-- The Basics -->
+          <div class="footer__links-group">
+            <h3 class="footer__links-title">The Basics</h3>
+            <ul class="footer__links-list">
+              <li><a href="/about" class="footer__link">About TMDB</a></li>
+              <li>
+                <a href="/about/staying-in-touch" class="footer__link"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.themoviedb.org/docs"
+                  target="_blank"
+                  class="footer__link"
+                >
+                  API Documentation
+                </a>
+              </li>
+              <li>
+                <a href="/api-for-business" class="footer__link"
+                  >API for Business</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://status.themoviedb.org/"
+                  target="_blank"
+                  class="footer__link"
+                >
+                  System Status
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Get Involved -->
+          <div class="footer__links-group">
+            <h3 class="footer__links-title">Get Involved</h3>
+            <ul class="footer__links-list">
+              <li>
+                <a href="/bible" class="footer__link"> Contribution Bible </a>
+              </li>
+              <li>
+                <a href="/movie/new" class="footer__link">Add New Movie</a>
+              </li>
+              <li>
+                <a href="/tv/new" class="footer__link">Add New TV Show</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Community -->
+          <div class="footer__links-group">
+            <h3 class="footer__links-title">Community</h3>
+            <ul class="footer__links-list">
+              <li>
+                <a
+                  href="/bible/general#674f287930fc85cab62597b4"
+                  class="footer__link"
+                  >Guidelines</a
+                >
+              </li>
+              <li><a href="/discuss" class="footer__link">Discussions</a></li>
+              <li>
+                <a href="/leaderboard" class="footer__link">Leaderboard</a>
+              </li>
+              <li><a href="/talk" class="footer__link">Support Forums</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal -->
+          <div class="footer__links-group">
+            <h3 class="footer__links-title">Legal</h3>
+            <ul class="footer__links-list">
+              <li>
+                <a href="/terms-of-use" class="footer__link">Terms of Use</a>
+              </li>
+              <li>
+                <a href="/api-terms-of-use" class="footer__link"
+                  >API Terms of Use</a
+                >
+              </li>
+              <li>
+                <a href="/privacy-policy" class="footer__link"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="/dmca-policy" class="footer__link">DMCA Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
